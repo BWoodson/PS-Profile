@@ -1,9 +1,9 @@
 # Grabs the directory that the script is running from
-$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$profilePath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 
 # Load longer form functions
 # https://github.com/scottmuc/poshfiles/blob/master/Microsoft.PowerShell_profile.ps1
-Resolve-Path $scriptDir\Functions\*.ps1 | % { . $_.ProviderPath }
+Resolve-Path $profilePath\Functions\*.ps1 | % { . $_.ProviderPath }
 
 # Shortcuts I use on a regular basis
 function gh() { Set-Location $env:USERPROFILE }

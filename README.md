@@ -4,7 +4,7 @@
 
 Here's my PowerShell profile. Some highlights:
 
-* Current directory only path name
+* Simple prompt (only current directory)
 * Black and white color scheme
 * Custom Aliases
 * Search and load custom functions

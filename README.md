@@ -12,7 +12,9 @@ Here's my PowerShell profile. Some highlights:
 ### Installation
 
 ```
-git clone git@github.com:BWoodson/PS-Profile %USERPROFILE%\Documents\WindowsPowershell
+git clone git@github.com:BWoodson/PS-Profile .\PS-Profile
+
+mv .\PS-Profile\Microsoft.PowerShell_profile.ps1 $env:USERPROFILE\Documents\WindowsPowerShell\
 ```
 
 Replace|Modify the **profile.example.ps1** file from posh-git to change the prompt.

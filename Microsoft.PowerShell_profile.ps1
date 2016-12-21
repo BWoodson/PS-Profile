@@ -11,6 +11,7 @@ function gd() { Set-Location ($env:USERPROFILE + "\Documents\Dev") }
 function ggh() { Set-Location ($env:USERPROFILE + "\Documents\GitHub") }
 function x() { exit }
 function reboot() { shutdown -r -t 1 }
+function halt() { shutdown -s -t 1 }
 
 # Launch Microsoft Visual Studio Code
 New-Alias -name c -value code

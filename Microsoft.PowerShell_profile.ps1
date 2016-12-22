@@ -1,20 +1,28 @@
 # Grabs the directory that the script is running from
-$profilePath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$profile_path = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 
 # Load longer form functions
-# https://github.com/scottmuc/poshfiles/blob/master/Microsoft.PowerShell_profile.ps1
-Resolve-Path $profilePath\Functions\*.ps1 | % { . $_.ProviderPath }
+if(Test-Path $profile_path\Functions) {
+  Resolve-Path $profile_path\Functions\*.ps1 | % { . $_.ProviderPath }
+}
 
-# Shortcuts I use on a regular basis
+# Single line shortcuts I use on a regular basis
 function gh() { Set-Location $env:USERPROFILE }
 function gd() { Set-Location ($env:USERPROFILE + "\Documents\Dev") }
 function ggh() { Set-Location ($env:USERPROFILE + "\Documents\GitHub") }
+# Close PowerShell
 function x() { exit }
+# Open current directory in explorer
+function e() { start . }
+# *nixy things
+function touch([Parameter(Mandatory=$true)]$file) { set-content -Path $file -Value ($null) }
 function reboot() { shutdown -r -t 1 }
 function halt() { shutdown -s -t 1 }
 
 # Launch Microsoft Visual Studio Code
-New-Alias -name c -value code
+Set-Alias -name c -value code
+# Mmmm, grep
+Set-Alias -name grep -value Select-String
 
 # Colors
 $console = $host.UI.RawUI
@@ -22,9 +30,12 @@ $console.ForegroundColor = "White"
 $console.BackgroundColor = "Black"
 
 # Add posh-git from GitHub Shell to PowerShell
-# http://stackoverflow.com/questions/12504649/how-to-use-posh-git-that-comes-with-github-for-windows-from-custom-shell
 . (Resolve-Path "$env:LOCALAPPDATA\GitHub\shell.ps1")
 . $env:github_posh_git\profile.example.ps1
+
+# Or if you installed into Modules
+#Import-Module posh-git
+#. $profilePath\Modules\posh-git\profile.example.ps1
 
 # Clear to set colors
 Clear-Host

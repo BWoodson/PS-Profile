@@ -37,5 +37,17 @@ $console.BackgroundColor = "Black"
 #Import-Module posh-git
 #. $profilePath\Modules\posh-git\profile.example.ps1
 
+# Custom prompt
+function global:prompt {
+    Write-Host ("[") -nonewline -foregroundcolor DarkGray
+    Write-Host ((split-path($PWD) -Leaf)) -nonewline -foregroundcolor Gray
+    Write-Host ("]") -nonewline -foregroundcolor DarkGray
+
+    Write-VcsStatus
+
+    Write-Host ("#") -nonewline -foregroundcolor Green
+    return " "
+}
+
 # Clear to set colors
 Clear-Host

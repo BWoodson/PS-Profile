@@ -29,14 +29,6 @@ $console = $host.UI.RawUI
 $console.ForegroundColor = "White"
 $console.BackgroundColor = "Black"
 
-# Add posh-git from GitHub Shell to PowerShell
-. (Resolve-Path "$env:LOCALAPPDATA\GitHub\shell.ps1")
-. $env:github_posh_git\profile.example.ps1
-
-# Or if you installed into Modules
-#Import-Module posh-git
-#. $profilePath\Modules\posh-git\profile.example.ps1
-
 # Custom prompt
 function global:prompt {
     Write-Host ("[") -nonewline -foregroundcolor DarkGray
